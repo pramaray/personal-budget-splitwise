@@ -12,6 +12,10 @@ app.use(express.json());
 const apiRoutes = require('./routes/api');
 app.use('/api', apiRoutes);
 
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
+
+
 //console.log('MONGO_URI:', process.env.MONGO_URI);
 
 // Connect to MongoDB
