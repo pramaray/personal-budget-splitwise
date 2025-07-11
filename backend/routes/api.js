@@ -1,14 +1,13 @@
+// routes/apiRoutes.js
 const express = require('express');
 const router = express.Router();
+const apiController = require('../controllers/apiController');
 
-// test route
-router.get('/ping', (req, res) => {
-  res.json({ message: 'pong 🎯' });
-});
+// Test route
+router.get('/ping', apiController.ping);
 
-// healthcheck route
-router.get('/health', (req, res) => {
-  res.json({ db: 'connected' });
-});
+// Healthcheck route
+router.get('/health', apiController.health);
 
 module.exports = router;
+
