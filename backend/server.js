@@ -15,6 +15,11 @@ app.use('/api', apiRoutes);
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 
+const budgetRoutes = require('./routes/budget');
+app.use('/api/budgets', budgetRoutes);
+
+const groupRoutes = require('./routes/group');
+app.use('/api/groups', groupRoutes);
 
 //console.log('MONGO_URI:', process.env.MONGO_URI);
 

@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
 // Middleware to protect routes
-const protect = async (req, res, next) => {
+exports.protect = async (req, res, next) => {
   let token;
 
   // Check for Bearer token in Authorization header
@@ -31,4 +31,4 @@ const protect = async (req, res, next) => {
   }
 };
 
-module.exports = protect;
+//module.exports = {protect};
