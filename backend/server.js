@@ -8,11 +8,11 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-// Test route
-app.get('/api/ping', (req, res) => {
-  res.json({ message: 'pong 🎯' });
-});
-console.log('MONGO_URI:', process.env.MONGO_URI);
+// Test routes
+const apiRoutes = require('./routes/api');
+app.use('/api', apiRoutes);
+
+//console.log('MONGO_URI:', process.env.MONGO_URI);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
