@@ -72,3 +72,12 @@ exports.login = async (req, res) => {
 exports.getMe = async (req, res) => {
   res.status(200).json(req.user);
 };
+
+// Get user by email
+exports.getUserByEmail = async (req, res) => {
+  const { email } = req.query;
+  if (!email) return res.status(400).json({ message: "Email is required" });
+  const user = await User.findOne({ email }).select('_id name email');
+  if (!user) return res.status(404).json({ message: "User not found" });
+  res.json(user);
+};
