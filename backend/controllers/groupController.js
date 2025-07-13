@@ -113,3 +113,16 @@ exports.removeMember = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 };
+
+exports.getGroupById = async (req, res) => {
+  try {
+    const group = await Group.findById(req.params.id).populate("members", "name email");
+    if (!group) {
+      return res.status(404).json({ message: "Group not found" });
+    }
+    res.json(group);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+};

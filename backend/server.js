@@ -23,6 +23,12 @@ app.use('/api/budgets', budgetRoutes);
 const groupRoutes = require('./routes/group');
 app.use('/api/groups', groupRoutes);
 
+const expenseRoutes = require('./routes/expense');
+app.use('/api/expenses', expenseRoutes);
+
+const balanceRoutes = require("./routes/balance");
+app.use("/api/balances", balanceRoutes);
+
 //console.log('MONGO_URI:', process.env.MONGO_URI);
 
 // Connect to MongoDB
