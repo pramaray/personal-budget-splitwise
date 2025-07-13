@@ -1,9 +1,14 @@
+
+
+
 import { useEffect, useState } from "react";
 import { useApi } from "../hooks/useApi";
 import Modal from "../components/Modal";
-
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 export default function Dashboard() {
   const api = useApi();
+  const navigate = useNavigate();
   const [budgets, setBudgets] = useState([]);
   const [groups, setGroups] = useState([]);
   const [showBudgetModal, setShowBudgetModal] = useState(false);
@@ -13,7 +18,6 @@ export default function Dashboard() {
   const [form, setForm] = useState({ name: "", amount: "", category: "" });
   const [groupForm, setGroupForm] = useState({ name: "", members: "" });
 
-  // Fetch budgets & groups
   const fetchData = async () => {
     const [budgetsRes, groupsRes] = await Promise.all([
       api.get("/budgets"),
@@ -27,7 +31,6 @@ export default function Dashboard() {
     fetchData();
   }, []);
 
-  // Handlers
   const handleBudgetChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -58,14 +61,16 @@ export default function Dashboard() {
     }
 
     editingGroup
-      ? await api.put(`/groups/${editingGroup._id}`, {
-          name: groupForm.name,
-          members: resolvedMembers,
-        }, "Group updated!")
-      : await api.post("/groups", {
-          name: groupForm.name,
-          members: resolvedMembers,
-        }, "Group created!");
+      ? await api.put(
+          `/groups/${editingGroup._id}`,
+          { name: groupForm.name, members: resolvedMembers },
+          "Group updated!"
+        )
+      : await api.post(
+          "/groups",
+          { name: groupForm.name, members: resolvedMembers },
+          "Group created!"
+        );
 
     closeGroupModal();
     fetchData();
@@ -87,19 +92,18 @@ export default function Dashboard() {
     setEditingGroup(null);
     setGroupForm({ name: "", members: "" });
   };
-
+  const { logout } = useAuth();
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 p-6">
       <header className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Dashboard</h1>
         <button
-          onClick={() => localStorage.clear() || window.location.reload()}
+          onClick={logout}
           className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded"
         >
           Logout
         </button>
       </header>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Budgets */}
         <div className="bg-gray-800 p-4 rounded-lg shadow">
@@ -162,7 +166,8 @@ export default function Dashboard() {
             {groups.map((g) => (
               <li
                 key={g._id}
-                className="p-3 bg-gray-700 rounded flex justify-between items-center"
+                className="p-3 bg-gray-700 rounded flex justify-between items-center cursor-pointer hover:bg-gray-600"
+                onClick={() => navigate(`/groups/${g._id}`)} // 👈 Navigate to GroupPage
               >
                 <div>
                   <h3 className="font-semibold">{g.name}</h3>
@@ -172,7 +177,8 @@ export default function Dashboard() {
                 </div>
                 <div className="space-x-2">
                   <button
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setEditingGroup(g);
                       setGroupForm({
                         name: g.name,
@@ -185,7 +191,10 @@ export default function Dashboard() {
                     Edit
                   </button>
                   <button
-                    onClick={() => deleteGroup(g._id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      deleteGroup(g._id);
+                    }}
                     className="bg-red-600 hover:bg-red-700 px-2 py-1 rounded"
                   >
                     Delete

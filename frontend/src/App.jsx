@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./pages/Auth/Register";
 import Login from "./pages/Auth/Login";
 import Dashboard from "./pages/Dashboard";
+import GroupPage from "./pages/GroupPage";
 import Navbar from './components/Navbar';
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
@@ -23,6 +24,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/groups/:id" element={<GroupPage />} />
     </Routes>
     <ToastContainer position="top-right" autoClose={3000} /></>
   );

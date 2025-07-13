@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useApi } from "../../hooks/useApi";
-
+import { useAuth } from "../../context/AuthContext";
+import { toast } from "react-toastify";
 export default function Login() {
   const api = useApi();
   const navigate = useNavigate();
@@ -9,21 +10,42 @@ export default function Login() {
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
-
+  const { login } = useAuth();
+ const handleLogin = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await api.post("/auth/login", form); // send form directly
+    console.log("Login Response:", res);
+    if (res?.token) {
+       // Save user to context + localStorage
+      localStorage.setItem("token", res.token);
+      localStorage.setItem("user", JSON.stringify(res.user));
+      login(res.user);
+      toast.success("Logged in!");
+      navigate("/dashboard");
+    }
+  } catch (err) {
+    toast.error(err.response?.data?.message || "Login failed.");
+  }
+};
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await api.post("/auth/login", form, "Login successful!");
+    const res = await api.post("/auth/login", form, "Login successful!");localStorage.setItem("user", JSON.stringify(res.user));
     if (res?.token) {
-      localStorage.setItem("token", res.token);
+      localStorage.setItem("token", res.token);//localStorage.setItem("user", JSON.stringify(res.user)); 
+      
+
       navigate("/dashboard");
     }
   };
+
+// save user info
 
   return (
     <div className="min-h-screen bg-gray-900 flex items-center justify-center">
       <div className="bg-gray-800 p-6 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-100">Login</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleLogin} className="space-y-4">
           <input
             name="email"
             type="email"
