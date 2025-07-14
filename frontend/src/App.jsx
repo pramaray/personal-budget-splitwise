@@ -11,8 +11,8 @@ import "react-toastify/dist/ReactToastify.css";
 export default function App() {
   return (
     
-      <><Navbar />
-      <Routes>
+      // <><Navbar />
+      <><Routes>
 
       <Route
           path="/"

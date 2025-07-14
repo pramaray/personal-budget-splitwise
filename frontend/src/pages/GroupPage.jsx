@@ -74,19 +74,13 @@ if (!user) {
     fetchData();
   };
   
-    // const currentUser = JSON.parse(localStorage.getItem("user") || "{}");
-    // const currentUserId = currentUser._id;
-    // console.log("Current User ID:", currentUserId);
-    // console.log("Balances API Response:", balances);
-    //   const youOwe = 0;
-    //   const youAreOwed =  0;
 
 const youOwe = balances
-  .filter((b) => b.user._id !== user._id && b.balance < 0)
+  .filter((b) => b.user._id === user._id && b.balance < 0)
   .reduce((acc, b) => acc + Math.abs(b.balance), 0);
 
 const youAreOwed = balances
-  .filter((b) => b.user._id !== user._id && b.balance > 0)
+  .filter((b) => b.user._id === user._id && b.balance > 0)
   .reduce((acc, b) => acc + b.balance, 0);
 
   return (
@@ -105,11 +99,11 @@ const youAreOwed = balances
       <div className="mb-6 grid grid-cols-2 gap-4">
         <div className="p-4 bg-gray-800 rounded">
           <h2 className="text-lg font-semibold">You Owe</h2>
-          <p className="text-2xl text-red-400">₹{youAreOwed.toFixed(2)}</p>
+          <p className="text-2xl text-red-400">₹{youOwe.toFixed(2)}</p>
         </div>
         <div className="p-4 bg-gray-800 rounded">
           <h2 className="text-lg font-semibold">You Are Owed</h2>
-          <p className="text-2xl text-green-400">₹{youOwe.toFixed(2)}</p>
+          <p className="text-2xl text-green-400">₹{youAreOwed.toFixed(2)}</p>
         </div>
       </div>
 
