@@ -174,16 +174,16 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gray-900 text-gray-100 p-6">
       <header className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Dashboard</h1>
-        <div>
-          <Link to="/profile" className="hover:text-blue-400">
+        <div className="flex ">
+          <Link to="/profile" className="hover:text-blue-400 bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded">
             Profile
           </Link>
-          <button
+          <div className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded"><button
             onClick={handleLogout}
-            className="ml-4 bg-red-600 hover:bg-red-700 px-3 py-1 rounded"
+            className="ml-4 hover:bg-red-700 "
           >
             Logout
-          </button>
+          </button></div>
           </div>
       </header>
 
