@@ -1,13 +1,17 @@
 import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function ProtectedRoute({ children }) {
-  const token = localStorage.getItem("token");
+  const { user, loading } = useAuth();
 
-  // If token not present, redirect to login
-  if (!token) {
+  if (loading) {
+    return <p className="text-center mt-10">Loading...</p>; // 👈 Optional spinner
+  }
+
+  if (!user) {
     return <Navigate to="/login" replace />;
   }
 
-  // Else render the protected component
   return children;
 }
+

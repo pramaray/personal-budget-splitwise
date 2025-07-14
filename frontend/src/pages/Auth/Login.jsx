@@ -15,7 +15,7 @@ export default function Login() {
   e.preventDefault();
   try {
     const res = await api.post("/auth/login", form); // send form directly
-    console.log("Login Response:", res);
+    
     if (res?.token) {
        // Save user to context + localStorage
       localStorage.setItem("token", res.token);

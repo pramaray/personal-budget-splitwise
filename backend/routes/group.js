@@ -7,7 +7,8 @@ const {
     deleteGroup,
     addMember,
     removeMember,
-    getGroupById
+    getGroupById,
+    getGroupsByUser
 } = require('../controllers/groupController');
 const { protect } = require('../middleware/authMiddleware');
 
@@ -28,5 +29,8 @@ router.route('/:id/members')
     .delete(protect, removeMember); // DELETE /api/groups/:id/members
 
 router.get("/:id", protect, getGroupById); // ✅ GET /api/groups/:id    
+
+router.get('/user/:id', protect, getGroupsByUser);
+
 
 module.exports = router;

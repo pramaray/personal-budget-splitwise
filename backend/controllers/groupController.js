@@ -126,3 +126,20 @@ exports.getGroupById = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+// const Group = require("../models/group");
+
+// ✅ Get groups for a specific user
+exports.getGroupsByUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    // Find all groups where user is a member
+    const groups = await Group.find({ members: userId }).populate("members", "name email");
+
+    res.status(200).json(groups);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+};
