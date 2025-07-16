@@ -54,7 +54,7 @@ export default function Dashboard() {
     setYouOwe(totalOwe);
     setYouAreOwed(totalOwed);
   };
-
+  const totalBalance= (youAreOwed-youOwe);
   useEffect(() => {
     fetchData();
   }, []);
@@ -174,13 +174,13 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gray-900 text-gray-100 p-6">
       <header className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-extrabold">Dashboard</h1>
-        <div className="flex ">
-          <Link to="/profile" className="hover:text-blue-400 bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded">
+        <div className="flex gap-2">
+          <Link to="/profile" className="hover:text-blue-400 bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded ">
             Profile
           </Link>
-          <div className="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded"><button
+          <div className="bg-gray-700 hover:bg-gray-600 items-center px-4 py-2 rounded"><button
             onClick={handleLogout}
-            className="ml-4 hover:bg-red-700 "
+            
           >
             Logout
           </button></div>
@@ -197,13 +197,17 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="space-y-4">
-          <div className="p-4 bg-gray-800 rounded">
+          <div className="p-5 bg-gray-800 rounded">
             <h2 className="text-lg font-semibold">You Owe</h2>
             <p className="text-2xl text-red-400">₹{youOwe.toFixed(2)}</p>
           </div>
-          <div className="p-4 bg-gray-800 rounded">
+          <div className="p-5 bg-gray-800 rounded">
             <h2 className="text-lg font-semibold">You Are Owed</h2>
             <p className="text-2xl text-green-400">₹{youAreOwed.toFixed(2)}</p>
+          </div>
+          <div className="p-5 bg-gray-800 rounded">
+            <h2 className="text-lg font-semibold">Outstanding Balance</h2>
+            <p className="text-2xl text-blue-400">₹{totalBalance.toFixed(2)}</p>
           </div>
         </div>
 
