@@ -173,7 +173,7 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 p-6">
       <header className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
+        <h1 className="text-3xl font-extrabold">Dashboard</h1>
         <div className="flex ">
           <Link to="/profile" className="hover:text-blue-400 bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded">
             Profile
