@@ -102,8 +102,15 @@ export default function GroupPage() {
       </div>
 
       {/* Header */}
-      <header className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center mb-10 bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-700">
+      {/* <header className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center mb-10 bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-700">
         <div className="mb-4 md:mb-0 flex items-center gap-4">
+          
+          <div >
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent mb-2">
+              {group?.name || "Loading Group..."}
+            </h1>
+            <p className="text-gray-400">{group?.members?.length || 0} members</p>
+          </div>
           <button
             onClick={() => window.history.back()}
             className="px-4 py-2 rounded-xl border border-gray-600 hover:border-white hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 font-medium flex items-center gap-2"
@@ -111,6 +118,11 @@ export default function GroupPage() {
             <ArrowLeft className="w-4 h-4" />
             Back
           </button>
+        </div>
+      </header> */}
+      <header className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center mb-10 bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-700">
+        {/* Left: Group name and members */}
+        <div className="mb-4 md:mb-0 flex items-center gap-4">
           <div>
             <h1 className="text-5xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent mb-2">
               {group?.name || "Loading Group..."}
@@ -118,7 +130,17 @@ export default function GroupPage() {
             <p className="text-gray-400">{group?.members?.length || 0} members</p>
           </div>
         </div>
+
+        {/* Right: Back button */}
+        <button
+          onClick={() => window.history.back()}
+          className="px-4 py-2 rounded-xl border border-gray-600 hover:border-white hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 font-medium flex items-center gap-2"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Back
+        </button>
       </header>
+
 
       {/* Balance Summary */}
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
