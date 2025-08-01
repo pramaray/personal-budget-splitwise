@@ -1,0 +1,26 @@
+{
+  "name": "personal-budget-splitwise",
+  "version": "1.0.0",
+  "description": "Personal budget tracking and expense splitting application",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm run dev",
+    "install-deps": "cd backend && npm install && cd ../frontend && npm install",
+    "build": "cd frontend && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "."
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "lucide-react": "^0.535.0",
+    "react-icons": "^5.5.0"
+  }
+}

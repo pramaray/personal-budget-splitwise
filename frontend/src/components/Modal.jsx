@@ -1,11 +1,12 @@
 export default function Modal({ title, onClose, children }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-gray-800 text-gray-100 rounded-lg shadow-lg w-full max-w-md p-6 relative">
-        <h2 className="text-xl font-bold mb-4">{title}</h2>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+      <div className="bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-sm text-white rounded-3xl border border-gray-700 w-full max-w-md p-8 relative shadow-2xl">
+        <h2 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent mb-6">{title}</h2>
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-gray-400 hover:text-gray-200"
+          className="absolute top-6 right-6 text-gray-400 text-2xl w-8 h-8 flex items-center justify-center rounded-xl border border-gray-600 hover:border-white hover:bg-white hover:text-black transition-all duration-300 hover:scale-105"
+          aria-label="Close"
         >
           &times;
         </button>
@@ -15,24 +16,3 @@ export default function Modal({ title, onClose, children }) {
   );
 }
 
-// export default function Modal({ title, onClose, children }) {
-//   return (
-//     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
-//       <div className="bg-gray-900 text-gray-100 rounded-2xl shadow-2xl w-full max-w-md p-6 relative">
-//         {/* Title */}
-//         <div className="flex justify-between items-center mb-4">
-//           <h2 className="text-2xl font-semibold">{title}</h2>
-//           <button
-//             onClick={onClose}
-//             className="text-gray-400 hover:text-gray-200 text-2xl leading-none"
-//           >
-//             ×
-//           </button>
-//         </div>
-
-//         {/* Content */}
-//         <div>{children}</div>
-//       </div>
-//     </div>
-//   );
-// }

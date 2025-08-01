@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LandingPage from "./pages/Landingpage";
 export default function App() {
   return (
     
@@ -17,9 +18,9 @@ export default function App() {
       <Route
           path="/"
           element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
+            
+              <LandingPage />
+            
           }
         />
       <Route path="/register" element={<Register />} />
