@@ -118,26 +118,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Social Proof */}
-      <section className="relative z-10 py-16 px-6 bg-gray-900 border-y border-gray-800">
-        <div className="max-w-4xl mx-auto text-center">
-          <h3 className="text-2xl font-bold mb-8">Join thousands of satisfied users</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { stat: "10,000+", label: "Active Users" },
-              { stat: "$2.5M+", label: "Expenses Tracked" },
-              { stat: "4.9/5", label: "User Rating" }
-            ].map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="text-3xl font-bold mb-2 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-                  {item.stat}
-                </div>
-                <div className="text-gray-400">{item.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* CTA Section */}
       <section className="relative z-10 py-20 px-6 text-center">
