@@ -82,7 +82,7 @@ export default function ProfilePage() {
                 <li key={g._id}>
                   <Link
                     to={`/groups/${g._id}`}
-                    className="bg-black/30 backdrop-blur-sm p-5 rounded-2xl border border-gray-700/50 flex items-center gap-4 hover:border-gray-600 hover:bg-black/50 transition-all duration-300 group block"
+                    className="bg-black/30 backdrop-blur-sm p-5 rounded-2xl border border-gray-700/50 flex-block items-center gap-4 hover:border-gray-600 hover:bg-black/50 transition-all duration-300 group block"
                   >
                     <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-teal-600 rounded-xl flex items-center justify-center text-white font-bold text-sm">
                       {g.members.length}
